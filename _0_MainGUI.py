@@ -54,15 +54,21 @@ class Ui_AISearchingTechniquesMainWindow(object):
             graph_class = graph_classes.get(searchType)
             if graph_class:
                 graph = graph_class(directed=directed)
-                for i in range(0, self.counter):
-                    graph.add_edge(Node1_arr[i], Node2_arr[i])
+                if searchType in ["UCS", "A*", "Bfs", "SAS", "ABS"]:
+                    for i in range(0, self.counter):
+                        graph.add_edge(Node1_arr[i], Node2_arr[i], int(
+                            self.EdgeWeight_arr[i]))
+                else:
+                    for i in range(0, self.counter):
+                        graph.add_edge(Node1_arr[i], Node2_arr[i])
 
                 start = self.StartNode_input.text()
                 goals = Goal_list
+                if searchType in ["A*", "Bfs"]:
+                    graph.set_heuristic(self.HeuristicDict)
 
                 if searchType in ["UCS", "A*"]:
-                    traced_path, goals, cost = graph.search(
-                        start, goals)
+                    traced_path, goals, cost = graph.search(start, goals)
                     if traced_path:
                         print('Path:', end=' ')
                         graph.print_path(traced_path)
@@ -122,8 +128,6 @@ class Ui_AISearchingTechniquesMainWindow(object):
         InputNodeH = self.Node_Input.text()
         self.H[self.Node_Input.text()] = self.NodeHeuristic_input.text()
         self.HeuristicDict.update({InputNodeH: InputHeuristic})
-        self.graphastar.set_huristics(self.HeuristicDict)
-        self.graphastarD.set_huristics(self.HeuristicDict)
         self.Node_Input.clear()
         self.NodeHeuristic_input.clear()
 
