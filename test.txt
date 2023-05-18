@@ -1,7 +1,10 @@
+Backend QtAgg is interactive backend. Turning interactive mode on.
 Expand Node | Fringe
 --------------------
--           | (8, 'A')
-A           | (3, 'C'), (11, 'B')
-C           | 
-Path: A => C
-Cost: 3
+-           | (2, 'w')
+w           | (2, 'q')
+q           | 
+Path: w -> q
+
+Cost: 1
+
