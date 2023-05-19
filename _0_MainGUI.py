@@ -11,7 +11,7 @@ from _5_UCS import Graph_ucs
 from _6_BDS import Graph_bds
 from _7_BestFS import Graph_bestfs
 from _8_AStar import Graph_astar
-from _9_SimulatedAnnealing import Graph_SimulatedAnnealing
+from _9_SimulatedAnnealing import Graph_SA
 from _10_AlphaBeta import Graph_AlphaBeta
 
 DG = nx.DiGraph()
@@ -47,7 +47,7 @@ class Ui_AISearchingTechniquesMainWindow(object):
                 "BDS": Graph_bds,
                 "Bfs": Graph_bestfs,
                 "A*": Graph_astar,
-                "SAS": Graph_SimulatedAnnealing,
+                "SAS": Graph_SA,
                 "ABS": Graph_AlphaBeta
             }
 
@@ -67,14 +67,14 @@ class Ui_AISearchingTechniquesMainWindow(object):
                 if searchType in ["A*", "Bfs"]:
                     graph.set_heuristic(self.HeuristicDict)
 
-                if searchType in ["UCS", "A*"]:
+                if searchType in ["UCS", "A*", "Bfs", "SAS", "ABS"]:
                     traced_path, goals, cost = graph.search(start, goals)
                     if traced_path:
                         print('Path:', end=' ')
                         graph.print_path(traced_path)
                         print('\nCost:', cost)
                         print()
-                elif searchType in ["DLS", "IDS"]:
+                elif searchType in ["DLS"]:
                     traced_path, goals = graph.search(
                         start, goals, limit)
                     if traced_path:

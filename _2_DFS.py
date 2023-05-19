@@ -36,3 +36,34 @@ class Graph_dfs:
             print(' -> '.join(path))
         else:
             print('No path found.')
+
+
+# if __name__ == '__main__':
+#     graph = Graph_dfs()
+#     graph.add_edge('A', 'B')
+#     graph.add_edge('A', 'C')
+#     graph.add_edge('B', 'D')
+#     graph.add_edge('B', 'E')
+#     graph.add_edge('C', 'F')
+#     graph.add_edge('C', 'G')
+#     graph.add_edge('D', 'H')
+#     graph.add_edge('D', 'I')
+#     graph.add_edge('F', 'J')
+#     graph.add_edge('F', 'K')
+#     graph.add_edge('G', 'L')
+#     graph.add_edge('G', 'M')
+#     graph.add_edge('H', 'N')
+#     graph.add_edge('H', 'O')
+#     graph.add_edge('K', 'P')
+
+#     path, goal = graph.search('A', ['P'])
+#     graph.print_path(path)
+#     print(goal)
+
+#     path, goal = graph.search('A', ['N'])
+#     graph.print_path(path)
+#     print(goal)
+
+#     path, goal = graph.search('A', ['X'])
+#     graph.print_path(path)
+#     print(goal)

@@ -40,3 +40,26 @@ class Graph_ucs:
             print(' -> '.join(path))
         else:
             print('No path found.')
+
+
+# if __name__ == '__main__':
+#     graph = Graph_ucs()
+#     graph.add_edge('A', 'B', 1)
+#     graph.add_edge('A', 'C', 2)
+#     graph.add_edge('B', 'D', 5)
+#     graph.add_edge('B', 'E', 6)
+#     graph.add_edge('C', 'F', 7)
+#     graph.add_edge('C', 'G', 8)
+#     graph.add_edge('D', 'H', 9)
+#     graph.add_edge('D', 'I', 10)
+#     graph.add_edge('F', 'J', 11)
+#     graph.add_edge('F', 'K', 12)
+#     graph.add_edge('G', 'L', 13)
+#     graph.add_edge('G', 'M', 14)
+#     graph.add_edge('H', 'N', 15)
+#     graph.add_edge('H', 'O', 16)
+#     graph.add_edge('K', 'P', 17)
+
+#     path, node, cost = graph.search('A', ['P'])
+#     graph.print_path(path)
+#     print(node, cost)

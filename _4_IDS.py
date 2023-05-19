@@ -16,15 +16,28 @@ class Graph_ids:
         if not self.directed:
             self.graph[node2].append(node1)
 
-    def search(self, start, goals, max_depth):
+    def search(self, start, goals):
+        max_depth = self.calculate_graph_depth(start)
         for depth in range(max_depth):
             path, node = self.depth_limited_search(start, goals, depth)
-            print(f"Depth# {depth} :", end=" ")
-            self.print_path(path)
             if path:
                 return path, node
 
         return None, None
+
+    def calculate_graph_depth(self, start):
+        visited = set()
+        stack = deque([(start, 0)])
+
+        while stack:
+            node, depth = stack.pop()
+
+            if node not in visited:
+                visited.add(node)
+                for neighbor in self.graph[node]:
+                    stack.append((neighbor, depth + 1))
+
+        return depth
 
     def depth_limited_search(self, start, goals, limit):
         visited = set()
@@ -36,7 +49,7 @@ class Graph_ids:
             if node in goals:
                 return path + [node], node
 
-            if node not in visited and len(path) < limit:
+            if node not in visited and len(path) <= limit+1:
                 visited.add(node)
                 for neighbor in self.graph[node]:
                     stack.append((neighbor, path + [node]))
@@ -49,3 +62,25 @@ class Graph_ids:
             print(' -> '.join(path))
         else:
             print('No path found.')
+
+
+# if __name__ == '__main__':
+#     graph = Graph_ids()
+#     graph.add_edge('A', 'B')
+#     graph.add_edge('A', 'C')
+#     graph.add_edge('B', 'D')
+#     graph.add_edge('B', 'E')
+#     graph.add_edge('C', 'F')
+#     graph.add_edge('C', 'G')
+#     graph.add_edge('D', 'H')
+#     graph.add_edge('D', 'I')
+#     graph.add_edge('F', 'J')
+#     graph.add_edge('F', 'K')
+#     graph.add_edge('G', 'L')
+#     graph.add_edge('G', 'M')
+#     graph.add_edge('H', 'N')
+
+#     path, node = graph.search('A', ['N', 'M', 'K'])
+#     print(f"Path: ", end=" ")
+#     graph.print_path(path)
+#     print('Node:', node)
