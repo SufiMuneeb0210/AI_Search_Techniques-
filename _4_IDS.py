@@ -26,6 +26,7 @@ class Graph_ids:
         return None, None
 
     def calculate_graph_depth(self, start):
+        self.print_graph()
         visited = set()
         stack = deque([(start, 0)])
 
@@ -62,6 +63,11 @@ class Graph_ids:
             print(' -> '.join(path))
         else:
             print('No path found.')
+            
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 
 
 # if __name__ == '__main__':

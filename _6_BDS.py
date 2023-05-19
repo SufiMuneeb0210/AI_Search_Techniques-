@@ -17,11 +17,13 @@ class Graph_bds:
             self.graph[node2].append(node1)
 
     def search(self, start_node, goal_node):
+        self.print_graph()
         # Initialize the sets of visited nodes for both forward and backward search
         ForwardVisited = set()
         BackwardVisited = set()
         ForwardVisited.add(start_node)
-        BackwardVisited.add(goal_node)
+        for i in goal_node:
+            BackwardVisited.add(i)
 
         # Initialize the sets of Same level nodes for both forward and backward search
         ForwardSiblings = [start_node]
@@ -29,7 +31,8 @@ class Graph_bds:
 
         # Initialize the dictionaries to keep track of the parent nodes for both forward and backward search
         ForwardParent = {start_node: None}
-        BackwardParent = {goal_node: None}
+        for i in goal_node:
+            BackwardParent = {i: None}
 
         # Iterate until a common node is found or both search lists are empty
         while ForwardSiblings or BackwardSiblings:
@@ -86,7 +89,10 @@ class Graph_bds:
         else:
             print('No path found.')
 
-
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 # if __name__ == '__main__':
 #     graph = Graph_bds(directed=True)
 #     graph.add_edge('A', 'B')

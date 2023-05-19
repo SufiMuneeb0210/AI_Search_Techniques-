@@ -16,20 +16,21 @@ class Graph_AlphaBeta:
         if not self.directed:
             self.graph[node2][node1] = weight
 
-    def alpha_beta_search(self, start, goal):
+    def search(self, start, goal):
+        self.print_graph()
         visited = set()
         return self.max_value(start, goal, -math.inf, math.inf, visited, [start])
 
     def max_value(self, state, goal, alpha, beta, visited, path):
-        if state == goal:
-            return 0, path
+        if state in goal:
+            return path, goal, 0
 
         value = -math.inf
         for neighbor in self.graph[state]:
             if neighbor not in visited:
                 visited.add(neighbor)
                 new_path = path + [neighbor]
-                new_value, new_path = self.min_value(
+                new_path, goal, new_value = self.min_value(
                     neighbor, goal, alpha, beta, visited, new_path)
                 visited.remove(neighbor)
 
@@ -37,20 +38,20 @@ class Graph_AlphaBeta:
                     value = new_value
                     path = new_path
                 if value >= beta:
-                    return value, path
+                    return path, goal, value
                 alpha = max(alpha, value)
-        return value, path
+        return path, goal, value
 
     def min_value(self, state, goal, alpha, beta, visited, path):
-        if state == goal:
-            return 0, path
+        if state in goal:
+            return path, goal, 0
 
         value = math.inf
         for neighbor in self.graph[state]:
             if neighbor not in visited:
                 visited.add(neighbor)
                 new_path = path + [neighbor]
-                new_value, new_path = self.max_value(
+                new_path, goal, new_value = self.max_value(
                     neighbor, goal, alpha, beta, visited, new_path)
                 visited.remove(neighbor)
 
@@ -58,7 +59,7 @@ class Graph_AlphaBeta:
                     value = new_value
                     path = new_path
                 if value <= alpha:
-                    return value, path
+                    return path, goal, value
                 beta = min(beta, value)
         return path, goal, value
 
@@ -68,6 +69,11 @@ class Graph_AlphaBeta:
             print(' -> '.join(path))
         else:
             print('No path found.')
+
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 
 
 # if __name__ == '__main__':

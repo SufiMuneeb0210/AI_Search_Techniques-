@@ -17,6 +17,7 @@ class Graph_ucs:
             self.graph[node2].append((node1, cost))
 
     def search(self, start, goals):
+        self.print_graph()
         visited = set()
         pq = queue.PriorityQueue()
         pq.put((0, start, []))
@@ -40,6 +41,11 @@ class Graph_ucs:
             print(' -> '.join(path))
         else:
             print('No path found.')
+    
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 
 
 # if __name__ == '__main__':

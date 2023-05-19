@@ -21,6 +21,9 @@ class Graph_bestfs:
         self.heuristics = heuristics
 
     def search(self, S, goal_nodes):
+        self.print_graph()
+        print("Heuristics of the Nodes")
+        print(self.heuristics)
         Queue = PriorityQueue()
         Queue.put((self.heuristics[S], S))
         parents = {S: None}
@@ -52,6 +55,11 @@ class Graph_bestfs:
             print(' -> '.join(path))
         else:
             print('No path found.')
+            
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 
 
 # if __name__ == '__main__':

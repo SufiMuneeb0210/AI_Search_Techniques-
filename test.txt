@@ -1,4 +1,9 @@
-Path: a -> s
+The Graph printed as Dictionary:
+a  :  {'s': 1}
+s  :  {'a': 1}
+Heuristics of the Nodes
+{'a': 1, 's': 2}
+Path: s -> a
 
-Cost: 3
+Cost: 2
 

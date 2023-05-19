@@ -19,6 +19,7 @@ class Graph_dls:
             self.graph[node2].append(node1)
 
     def search(self, start, goals, limit):
+        self.print_graph()
         visited = set()
         stack = deque([(start, [])])
 
@@ -41,6 +42,11 @@ class Graph_dls:
             print(' -> '.join(path))
         else:
             print('No path found.')
+            
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 
 
 # if __name__ == '__main__':

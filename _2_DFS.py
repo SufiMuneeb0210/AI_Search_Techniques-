@@ -14,6 +14,7 @@ class Graph_dfs:
             self.graph[node2].append(node1)
 
     def search(self, start, goals):
+        self.print_graph()
         visited = set()
         stack = [(start, [])]
 
@@ -37,6 +38,10 @@ class Graph_dfs:
         else:
             print('No path found.')
 
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 
 # if __name__ == '__main__':
 #     graph = Graph_dfs()

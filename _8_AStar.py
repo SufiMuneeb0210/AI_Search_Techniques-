@@ -20,7 +20,10 @@ class Graph_astar:
     def set_heuristic(self, heuristics={}):
         self.heuristics = heuristics
 
-    def AstarSearch(self, S, goal_nodes):
+    def search(self, S, goal_nodes):
+        self.print_graph()
+        print("Heuristics of the Nodes")
+        print(self.heuristics)
         Queue = PriorityQueue()
         Queue.put((0, S))
         G_of_N = {S: 0}
@@ -59,7 +62,10 @@ class Graph_astar:
         else:
             print('No path found.')
 
-
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 # if __name__ == '__main__':
 #     g = Graph_astar()
 #     g.add_edge('S', 'A', 1)
@@ -74,6 +80,6 @@ class Graph_astar:
 #     g.add_edge('F', 'G', 10)
 #     g.set_heuristic({'S': 10, 'A': 9, 'B': 7, 'C': 8,
 #                     'D': 7, 'E': 6, 'F': 5, 'G': 0})
-#     path, cost = g.AstarSearch('S', {'G'})
+#     path, cost = g.search('S', {'G'})
 #     g.print_path(path)
 #     print('Cost: {}'.format(cost))

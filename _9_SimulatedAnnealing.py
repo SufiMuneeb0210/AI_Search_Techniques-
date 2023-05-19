@@ -27,6 +27,7 @@ class Graph_SA:
         return cost
 
     def search(self, start, goals, iterations=1000):
+        self.print_graph()
         current = start
         path = [current]
         for i in range(iterations):
@@ -42,11 +43,22 @@ class Graph_SA:
                 if next_node and random.random() < math.exp(-delta / T):
                     current = next_node
                     path.append(current)
+            if current in goals:
+                break
         cost = self.get_cost(path)
         return path, goals, cost
 
-    def print_path(self, path):
-        print(' -> '.join(path))
+    @staticmethod
+    def print_path(path):
+        if path:
+            print(' -> '.join(path))
+        else:
+            print('No path found.')
+
+    def print_graph(self):
+        print("The Graph printed as Dictionary:")
+        for key, value in self.graph.items():
+            print(key, ' : ', value)
 
 
 # if __name__ == '__main__':
